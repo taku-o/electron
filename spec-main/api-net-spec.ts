@@ -1265,6 +1265,12 @@ describe('net module', () => {
     })
   })
 
+  describe('net.isOffline()', () => {
+    it('returns a boolean', () => {
+      expect(originalNet.isOffline()).to.be.a('boolean')
+    })
+  })
+
   describe('Stability and performance', () => {
     it('should free unreferenced, never-started request objects without crash', (done) => {
       net.request('https://test')

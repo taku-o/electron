@@ -5,6 +5,7 @@
 #include "shell/browser/api/atom_api_net.h"
 
 #include "gin/handle.h"
+#include "net/base/network_change_notifier.h"
 #include "services/network/public/cpp/features.h"
 #include "shell/browser/api/atom_api_url_request.h"
 #include "shell/common/gin_helper/dictionary.h"
@@ -32,6 +33,7 @@ void Net::BuildPrototype(v8::Isolate* isolate,
                          v8::Local<v8::FunctionTemplate> prototype) {
   prototype->SetClassName(gin::StringToV8(isolate, "Net"));
   gin_helper::ObjectTemplateBuilder(isolate, prototype->PrototypeTemplate())
+      .SetMethod("isOffline", &net::NetworkChangeNotifier::IsOffline)
       .SetProperty("URLRequest", &Net::URLRequest);
 }
 
